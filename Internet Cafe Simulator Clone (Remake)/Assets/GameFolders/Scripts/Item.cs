@@ -4,14 +4,14 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 
 [RequireComponent(typeof(MeshCollider), typeof(Rigidbody))]
-public abstract class Item : SerializedMonoBehaviour, IInteractable, ICarryable, IUsable
+public abstract class Item : SerializedMonoBehaviour, IInteractable, ICarryable, IUsable, IInfo
 {
     #region Serialized Variables
 
     [FoldoutGroup("ItemVariables")]
     [FoldoutGroup("ItemVariables/Carry Positions"), SerializeField] private Vector3 _carryLocalPosition, _carryLocalRotation; //While Carryed
     [FoldoutGroup("ItemVariables/Layer Mask"), SerializeField] protected LayerMask _layerMask;
-
+    [FoldoutGroup("ItemVariables"), SerializeField] private string _name;
     #endregion
     #region Protected & Private Variables
 
@@ -22,8 +22,8 @@ public abstract class Item : SerializedMonoBehaviour, IInteractable, ICarryable,
 
     protected bool isUsed;
 
+    public string Name { get => _name; }
     #endregion
-
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();

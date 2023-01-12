@@ -17,3 +17,8 @@ public interface IUsable
 {
     public abstract IEnumerator Use();
 }
+
+public interface IInfo
+{
+    public string Name { get; }
+}
