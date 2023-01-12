@@ -1,14 +1,20 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 
-public abstract class Item : MonoBehaviour, IInteractable, ICarryable, IUsable
+[RequireComponent(typeof(MeshCollider), typeof(Rigidbody))]
+public abstract class Item : SerializedMonoBehaviour, IInteractable, ICarryable, IUsable
 {
-    [SerializeField] private Vector3 _carryLocalPosition, _carryLocalRotation; //While Carryed
+    #region Serialized Variables
 
+    [FoldoutGroup("ItemVariables")]
+    [FoldoutGroup("ItemVariables/Carry Positions"), SerializeField] private Vector3 _carryLocalPosition, _carryLocalRotation; //While Carryed
+    [FoldoutGroup("ItemVariables/Layer Mask"), SerializeField] protected LayerMask _layerMask;
 
+    #endregion
+    #region Protected & Private Variables
 
-    [SerializeField] protected LayerMask _layerMask;
     protected RaycastHit _raycastHit;
     protected Camera _camera;
     private Rigidbody _rigidbody;
@@ -16,7 +22,9 @@ public abstract class Item : MonoBehaviour, IInteractable, ICarryable, IUsable
 
     protected bool isUsed;
 
-    private  void Awake()
+    #endregion
+
+    private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
@@ -32,12 +40,11 @@ public abstract class Item : MonoBehaviour, IInteractable, ICarryable, IUsable
 
         SetParent(parent);
 
-        transform.DOLocalMove(_carryLocalPosition, .35f).SetEase(Ease.Linear);
+        transform.DOLocalMove(_carryLocalPosition, .50f).SetEase(Ease.InOutBack);
         transform.DOLocalRotate(_carryLocalRotation, .20f, RotateMode.Fast).SetEase(Ease.Linear);
 
         while (!isUsed)
         {
-            Debug.Log(isUsed);
             if (Input.GetMouseButtonDown(0)) StartCoroutine(nameof(Use));
             if (Input.GetMouseButtonDown(1)) Drop();
             yield return null;

@@ -35,8 +35,6 @@ public class Character_Controller : MonoBehaviour
     {
         MoveLogic();
         RotateLogic();
-
-
     }
     private void MoveLogic()
     {

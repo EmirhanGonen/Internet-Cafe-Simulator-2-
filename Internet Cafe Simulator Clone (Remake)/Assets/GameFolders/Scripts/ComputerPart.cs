@@ -1,13 +1,22 @@
+using Sirenix.OdinInspector;
 using System.Collections;
-using System.Data.SqlTypes;
 using UnityEngine;
 
 public class ComputerPart : Item
 {
-    [SerializeField] private Vector3 _placeLocalPosition, _placeLocalRotation; //While Place
+    #region Serialized Variables
+    [FoldoutGroup("Computer Part Variables")]
+    [FoldoutGroup("Computer Part Variables/ComputerType")] public PartType Type;
+    [FoldoutGroup("Computer Part Variables/Place Positions"), SerializeField] private Vector3 _placeLocalPosition, _placeLocalRotation; //While Place
+    [FoldoutGroup("Computer Part Variables/RotatePower"), SerializeField] private Vector3 _rotateValue; //While Place
+    #endregion
+    #region Private Variables
+
     private bool isCollision;
     private MeshRenderer _meshRenderer;
     private Material _ourMaterial;
+
+    #endregion
 
     private void Start()
     {
@@ -19,6 +28,7 @@ public class ComputerPart : Item
         StartCoroutine(base.Use());
 
         yield return new WaitForEndOfFrame();
+
         transform.rotation = Quaternion.Euler(_placeLocalRotation);
 
         SetParent(null);
@@ -29,36 +39,36 @@ public class ComputerPart : Item
 
             if (_raycastHit.collider) transform.position = _raycastHit.point + _placeLocalPosition;
             _meshRenderer.material = isCollision ? MaterialHolder.Instance.RedPreview : MaterialHolder.Instance.GreenPreview;
+;
+            if (Input.GetKey(KeyCode.Q)) SetRotation(-_rotateValue);
+            if (Input.GetKey(KeyCode.E)) SetRotation(_rotateValue);
 
-            if (Input.GetKey(KeyCode.Q)) SetRotation(-5);
-            if (Input.GetKey(KeyCode.E)) SetRotation(5);
-
-            yield return null;
+            yield return null; ;
         }
         if (isCollision) { StartCoroutine(nameof(Use)); yield break; }
 
-        SetCompenentVariables();
+        SetCompenentVariables(null, false, false, false);
         isUsed = false;
 
         _meshRenderer.material = _ourMaterial;
     }
-    private void SetCompenentVariables()
+    private void SetCompenentVariables(Transform parent, bool isCarryItem, bool rigidbodyKinematic, bool colliderTrigger)
     {
-        SetParent(null);
+        SetParent(parent);
 
-        SetIsCarryItem(false);
+        SetIsCarryItem(isCarryItem);
 
-        SetRigidbodyKinematic(false);
+        SetRigidbodyKinematic(rigidbodyKinematic);
 
-        SetColliderTrigger(false);
-
+        SetColliderTrigger(colliderTrigger);
     }
 
-    private void SetRotation(int value) => transform.Rotate(new(0, 0, transform.rotation.z + value));
+    private void SetRotation(Vector3 rotateValue) => transform.Rotate(rotateValue);
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == _layerMask) return;
+        if (Type == PartType.Chair) Debug.Log("SA");
         CheckIsCollision(out isCollision, true);
 
     }
@@ -68,4 +78,14 @@ public class ComputerPart : Item
         CheckIsCollision(out isCollision, false);
     }
     private void CheckIsCollision(out bool isCollision, bool value) => isCollision = value;
+}
+
+public enum PartType
+{
+    ComputerCase,
+    Monitor,
+    Chair,
+    Keyboard,
+    Mouse,
+    Desk
 }
