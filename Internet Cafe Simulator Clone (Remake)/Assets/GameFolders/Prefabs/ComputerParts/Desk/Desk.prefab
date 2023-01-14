@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 398774037}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Keyboard Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 472550253}
   - component: {fileID: 472550255}
   - component: {fileID: 472550254}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Mouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 487476248}
   - component: {fileID: 487476250}
   - component: {fileID: 487476249}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Keyboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 564780732}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Parents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 678915697}
   - component: {fileID: 678915696}
   - component: {fileID: 678915699}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Is Complete View Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 844663340}
   - component: {fileID: 844663342}
   - component: {fileID: 844663341}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Case Have
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 874159070}
   - component: {fileID: 874159072}
   - component: {fileID: 874159071}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 918411054}
   - component: {fileID: 5261701495427045949}
   - component: {fileID: 918411058}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacableObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -602,8 +602,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.4582499}
-  m_Center: {x: 0, y: -3.940781e-18, z: 0.22912504}
+  m_Size: {x: 1.0132887, y: 1.0727183, z: 1.1956362}
+  m_Center: {x: -0.0120752305, y: -0.03549269, z: 0.136929}
 --- !u!114 &5261701495427045949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 936222143}
   - component: {fileID: 936222145}
   - component: {fileID: 936222144}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Chair Have
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -719,7 +719,7 @@ GameObject:
   - component: {fileID: 946848812}
   - component: {fileID: 946848814}
   - component: {fileID: 946848813}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Case
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 1102208626}
   - component: {fileID: 1102208628}
   - component: {fileID: 1102208627}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Monitor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -871,7 +871,7 @@ GameObject:
   - component: {fileID: 1330130850}
   - component: {fileID: 1330130852}
   - component: {fileID: 1330130851}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Mouse Have
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +947,7 @@ GameObject:
   - component: {fileID: 1372605481}
   - component: {fileID: 1372605483}
   - component: {fileID: 1372605482}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Keyboard Have
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1021,7 +1021,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1753714561}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Chair Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1061,7 +1061,7 @@ GameObject:
   - component: {fileID: 1837165203}
   - component: {fileID: 1837165205}
   - component: {fileID: 1837165204}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Monitor Have
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1135,7 +1135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1940591115}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Mouse Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1175,7 +1175,7 @@ GameObject:
   - component: {fileID: 3679262936446916106}
   - component: {fileID: 7430076970599229549}
   - component: {fileID: 6606167530625631078}
-  - component: {fileID: 212405886}
+  - component: {fileID: 1663112218}
   - component: {fileID: 1507839141772545525}
   - component: {fileID: 171920994344831286}
   m_Layer: 8
@@ -1253,8 +1253,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &212405886
-MeshCollider:
+--- !u!65 &1663112218
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1263,10 +1263,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6317805809608689028, guid: ccd55daf8e98ab64c90ff6332363c819, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.8470689, y: 1.030318, z: 1.0838099}
+  m_Center: {x: -0.0046043214, y: 0.004870181, z: 0.7207806}
 --- !u!54 &1507839141772545525
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1304,12 +1303,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: RegisterCallBack
-      Entry: 6
-      Data: 
-    - Name: UnRegisterCallBack
-      Entry: 6
-      Data: 
     - Name: _computerParts
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[PartType, Assembly-CSharp],[ComputerPart,
@@ -1341,6 +1334,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 128
+  _name: Desk
   Type: 5
   _placeLocalPosition: {x: 0, y: -0.15, z: 0}
   _placeLocalRotation: {x: -90, y: 0, z: 0}
@@ -1354,7 +1348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9218265474729453176}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Monitor Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1392,7 +1386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 647306799992510477}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Case Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1432,7 +1426,7 @@ GameObject:
   - component: {fileID: 5391395744542475832}
   - component: {fileID: 2595848352968355712}
   - component: {fileID: 274919200513557450}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}

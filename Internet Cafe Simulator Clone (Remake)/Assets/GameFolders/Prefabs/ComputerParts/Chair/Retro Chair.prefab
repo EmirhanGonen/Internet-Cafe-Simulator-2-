@@ -188,6 +188,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 128
+  _name: Chair
   Type: 2
   _placeLocalPosition: {x: 0, y: 0, z: 0.14}
   _placeLocalRotation: {x: 0, y: -90, z: 0}

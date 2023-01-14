@@ -16,24 +16,31 @@ public class DeskManager : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.TryGetComponent(out ComputerPart computerPart)) return;
+
+        if (computerPart.transform.parent) return;
+
         RegisterMember(computerPart.Type, computerPart);
         _deskCanvas.RegisteredMember(computerPart.Type, true);
     }
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("ChairCollision")) return;
+
         Chair chair = other.transform.parent.GetComponent<Chair>();
 
         RegisterMember(chair.Type, chair);
+
         _deskCanvas.RegisteredMember(PartType.Chair, true);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("ChairCollision")) return;
+
         Chair chair = other.transform.parent.GetComponent<Chair>();
 
         RegisterMember(chair.Type, chair);
+
         _deskCanvas.RegisteredMember(PartType.Chair, false);
     }
     private void OnCollisionExit(Collision collision)

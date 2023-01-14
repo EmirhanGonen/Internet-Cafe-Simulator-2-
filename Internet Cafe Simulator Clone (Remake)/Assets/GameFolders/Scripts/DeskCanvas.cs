@@ -36,6 +36,7 @@ public class DeskCanvas : MonoBehaviour
 
     public void RegisteredMember(PartType key, bool isRegistered)
     {
+        Debug.Log(" " + key + isRegistered);
         switch (key)
         {
             case PartType.ComputerCase: _caseIcon.sprite = isRegistered ? _greenTickMark : _redTickMark; break;

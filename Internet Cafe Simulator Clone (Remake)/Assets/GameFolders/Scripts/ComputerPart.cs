@@ -7,21 +7,23 @@ public class ComputerPart : Item
     #region Serialized Variables
     [FoldoutGroup("Computer Part Variables")]
     [FoldoutGroup("Computer Part Variables/ComputerType")] public PartType Type;
+    [FoldoutGroup("Computer Part Variables/ComputerType")] public string _collisionTag;
     [FoldoutGroup("Computer Part Variables/Place Positions"), SerializeField] private Vector3 _placeLocalPosition, _placeLocalRotation; //While Place
     [FoldoutGroup("Computer Part Variables/RotatePower"), SerializeField] private Vector3 _rotateValue; //While Place
     #endregion
     #region Private Variables
 
-    private bool isCollision;
+    protected bool _isCollision = true;
     private MeshRenderer _meshRenderer;
     private Material _ourMaterial;
-
+    private Transform _playerTransform;
     #endregion
 
     private void Start()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
         _ourMaterial = _meshRenderer.material;
+        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
     public override IEnumerator Use()
     {
@@ -38,14 +40,18 @@ public class ComputerPart : Item
             Physics.Raycast(_camera.transform.position, _camera.transform.forward, out _raycastHit, 5, _layerMask);
 
             if (_raycastHit.collider) transform.position = _raycastHit.point + _placeLocalPosition;
-            _meshRenderer.material = isCollision ? MaterialHolder.Instance.RedPreview : MaterialHolder.Instance.GreenPreview;
-;
+            else transform.position = _playerTransform.position + _playerTransform.forward;
+
+
+
+            _meshRenderer.material = _isCollision ? MaterialHolder.Instance.RedPreview : MaterialHolder.Instance.GreenPreview;
+
             if (Input.GetKey(KeyCode.Q)) SetRotation(-_rotateValue);
             if (Input.GetKey(KeyCode.E)) SetRotation(_rotateValue);
 
-            yield return null; ;
+            yield return null;
         }
-        if (isCollision) { StartCoroutine(nameof(Use)); yield break; }
+        if (_isCollision) { StartCoroutine(nameof(Use)); yield break; }
 
         SetCompenentVariables(null, false, false, false);
         isUsed = false;
@@ -65,19 +71,28 @@ public class ComputerPart : Item
 
     private void SetRotation(Vector3 rotateValue) => transform.Rotate(rotateValue);
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (other.gameObject.layer == _layerMask) return;
-        if (Type == PartType.Chair) Debug.Log("SA");
-        CheckIsCollision(out isCollision, true);
+        if (!isUsed) return;
 
+        if (collision.CompareTag(_collisionTag))
+        {
+            CheckIsCollision(out _isCollision, false);
+            return;
+        }
+        CheckIsCollision(out _isCollision, true);
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == _layerMask) return;
-        CheckIsCollision(out isCollision, false);
+        if (!isUsed) return;
+        if (other.CompareTag(_collisionTag))
+        {
+            CheckIsCollision(out _isCollision, true);
+            return;
+        }
+        CheckIsCollision(out _isCollision, false);
     }
-    private void CheckIsCollision(out bool isCollision, bool value) => isCollision = value;
+    protected void CheckIsCollision(out bool isCollision, bool value) => isCollision = value;
 }
 
 public enum PartType

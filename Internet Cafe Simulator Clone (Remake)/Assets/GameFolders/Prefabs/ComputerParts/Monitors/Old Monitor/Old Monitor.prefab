@@ -112,6 +112,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 256
+  _name: Monitor
   Type: 1
   _placeLocalPosition: {x: 0, y: 0.7, z: 0}
   _placeLocalRotation: {x: -90, y: 0, z: -90}

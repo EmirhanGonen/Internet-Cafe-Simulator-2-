@@ -3,7 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 
-[RequireComponent(typeof(MeshCollider), typeof(Rigidbody))]
+[RequireComponent(typeof(Collider), typeof(Rigidbody))]
 public abstract class Item : SerializedMonoBehaviour, IInteractable, ICarryable, IUsable, IInfo
 {
     #region Serialized Variables
