@@ -27,6 +27,8 @@ public class UseComputerState : State
 
         _desk = parameters[1] as DeskManager;
 
+        _desk.InfoForCustomersCallback += CheckDesk;
+
         _monitor = (parameters[1] as DeskManager).GetDesk()._computerParts[PartType.Monitor].transform;
         _chair = (parameters[1] as DeskManager).GetDesk()._computerParts[PartType.Chair].transform;
 
@@ -45,6 +47,8 @@ public class UseComputerState : State
 
     public override void OnStateExit(params object[] parameters)
     {
+        _desk.InfoForCustomersCallback -= CheckDesk;
+
         _customer.transform.transform.SetParent(null);
         _collider.enabled = true;
         _navMeshAgent.enabled = true;
@@ -65,6 +69,8 @@ public class UseComputerState : State
     {
         //Payment State
 
+        _desk.UsedByCustomer();
+
         PaymentState _paymentState = _customerStateManager._states[typeof(PaymentState)] as PaymentState;
 
         _customer.SetState(_paymentState , _animator , this);
@@ -78,5 +84,14 @@ public class UseComputerState : State
     {
         _customer.transform.localPosition = Vector3.zero; //Sandalyeye oturmasý için
         _customer.transform.localRotation = Quaternion.Euler(0, 0, 0); // Ekrana bakmasý için
+    }
+
+    private void CheckDesk()
+    {
+        bool _deskIsCompleted = _desk.GetDesk().IsCompleted();
+
+        if (_deskIsCompleted) return;
+
+        SitUpComputer();
     }
 }

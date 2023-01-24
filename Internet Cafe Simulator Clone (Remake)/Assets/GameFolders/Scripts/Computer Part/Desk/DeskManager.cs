@@ -7,8 +7,6 @@ public class DeskManager : MonoBehaviour
     private Desk _desk;
     public Desk GetDesk() => _desk;
 
-    private WalkToDeskState _customer;
-
     private DeskCanvas _deskCanvas;
 
     public delegate void InfoForCustomersHandler();
@@ -74,9 +72,8 @@ public class DeskManager : MonoBehaviour
 
 
     public void SetNotAvailable() => ListHolder.Instance.AvailableDesks.Remove(this); //ilk önce kendini cýkartýcak baþka birisi gelmesin diye müþteri oturuncada masa saniyesini ayarlýcak
-    public void UsedByCustomer(WalkToDeskState customer)
+    public void UsedByCustomer()
     {
-        _customer = customer;
         // Desk Manager haber alcak customer bana geliyorum dedi masamý available listesinden cýkartýp notavailable listesine alýcam
 
         //ListHolder.Instance.NotavailableDesk.Add(this);
@@ -115,11 +112,6 @@ public class DeskManager : MonoBehaviour
         _monitorMeshRenderer.materials = materials;
     }
 
-    public void InformCustomer()
-    {
-        if (_customer) _customer.CheckDesk();
-    }
-    public bool DeskAvailable() => _desk.IsAvailable();
     public void CheckDeskIsAvailable()
     {
         if ((_desk.IsCompleted() & _desk.IsAvailable()) & !ListHolder.Instance.AvailableDesks.Contains(this)) ListHolder.Instance.AvailableDesks.Add(this);
