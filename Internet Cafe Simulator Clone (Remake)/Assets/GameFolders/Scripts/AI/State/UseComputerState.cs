@@ -65,8 +65,6 @@ public class UseComputerState : State
     {
         //Payment State
 
-        _desk.UsedByCustomer();
-
         PaymentState _paymentState = _customerStateManager._states[typeof(PaymentState)] as PaymentState;
 
         _customer.SetState(_paymentState , _animator , this);

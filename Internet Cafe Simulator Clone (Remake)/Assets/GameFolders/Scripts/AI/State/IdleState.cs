@@ -59,9 +59,7 @@ public class IdleState : State
             return;
         }
 
-        Debug.Log("Masaya gitmemeye karar verdi");
-
-
+        
         //Else not decide go cafe
 
         WalkState walkState = _customerStateManager._states[typeof(WalkState)] as WalkState;
@@ -73,8 +71,6 @@ public class IdleState : State
     private void GoDesk()
     {
         WalkToDeskState walkDeskState = _customerStateManager._states[typeof(WalkToDeskState)] as WalkToDeskState;
-
-        Debug.Log("Masaya gitmeye karar verdi");
 
         //Go Cafe
 

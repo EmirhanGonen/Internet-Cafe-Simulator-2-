@@ -7,24 +7,13 @@ public class DeskManager : MonoBehaviour
     private Desk _desk;
     public Desk GetDesk() => _desk;
 
+    private WalkToDeskState _customer;
 
     private DeskCanvas _deskCanvas;
 
-    public delegate void UseByCustomerHandler();
+    public delegate void InfoForCustomersHandler();
 
-    public UseByCustomerHandler UseByCustomerCallback;
-
-    private void OnEnable()
-    {
-        UseByCustomerCallback += SetNotAvailable;
-        UseByCustomerCallback += SetMonitorScreen;
-    }
-
-    private void OnDisable()
-    {
-        UseByCustomerCallback -= SetNotAvailable;
-        UseByCustomerCallback -= SetMonitorScreen;
-    }
+    public InfoForCustomersHandler InfoForCustomersCallback;
 
     private void Awake() => SetVariables();
 
@@ -73,14 +62,21 @@ public class DeskManager : MonoBehaviour
     public void RegisterMember(PartType partType, ComputerPart computerPart)
     {
         _desk.Register(partType, computerPart);
+        InfoForCustomersCallback?.Invoke();
         CheckDeskIsAvailable();
     }
-    public void UnRegisterMember(PartType key) => _desk.UnRegister(key);
+    public void UnRegisterMember(PartType key)
+    {
+        _desk.UnRegister(key);
+        InfoForCustomersCallback?.Invoke();
+    }
+
 
 
     public void SetNotAvailable() => ListHolder.Instance.AvailableDesks.Remove(this); //ilk önce kendini cýkartýcak baþka birisi gelmesin diye müþteri oturuncada masa saniyesini ayarlýcak
-    public void UsedByCustomer()
+    public void UsedByCustomer(WalkToDeskState customer)
     {
+        _customer = customer;
         // Desk Manager haber alcak customer bana geliyorum dedi masamý available listesinden cýkartýp notavailable listesine alýcam
 
         //ListHolder.Instance.NotavailableDesk.Add(this);
@@ -104,10 +100,8 @@ public class DeskManager : MonoBehaviour
 
         _monitorMeshRenderer.materials = materials;
 
-
         SetMonitorScreen();
     }
-
     private void SetMonitorOff()
     {
         StopCoroutine(nameof(CO_SetMonitorScreen));
@@ -121,7 +115,11 @@ public class DeskManager : MonoBehaviour
         _monitorMeshRenderer.materials = materials;
     }
 
-
+    public void InformCustomer()
+    {
+        if (_customer) _customer.CheckDesk();
+    }
+    public bool DeskAvailable() => _desk.IsAvailable();
     public void CheckDeskIsAvailable()
     {
         if ((_desk.IsCompleted() & _desk.IsAvailable()) & !ListHolder.Instance.AvailableDesks.Contains(this)) ListHolder.Instance.AvailableDesks.Add(this);
