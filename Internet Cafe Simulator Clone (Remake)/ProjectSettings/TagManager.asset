@@ -7,11 +7,12 @@ TagManager:
   - ChairCollision
   - DeskCollision
   - Ground
+  - Cafe Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Cafe Ground
   - Water
   - UI
   - Item

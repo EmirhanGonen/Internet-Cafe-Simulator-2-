@@ -128,22 +128,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc433c6cfb767448985cfbdc9f4ba3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
   _carryLocalPosition: {x: 0, y: -0.5, z: 1}
   _carryLocalRotation: {x: -41, y: -180, z: 0.5}
   _layerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2048
   _name: Keyboard
   Type: 3
+  _collisionTag: DeskCollision
   _placeLocalPosition: {x: 0, y: 0, z: 0}
   _placeLocalRotation: {x: -90, y: 0, z: -180}
   _rotateValue: {x: 0, y: 0, z: 3}

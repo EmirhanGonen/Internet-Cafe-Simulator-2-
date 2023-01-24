@@ -43,8 +43,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9761328, y: 0.6542696, z: 0.6906619}
-  m_Center: {x: 0.38377035, y: 0.35007876, z: -0.017998865}
+  m_Size: {x: 0.97613263, y: 0.6770881, z: 0.6906619}
+  m_Center: {x: 0.38377032, y: 0.33866778, z: -0.017998867}
 --- !u!1 &7621412512727762691
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ Transform:
   m_GameObject: {fileID: 7621412512727762691}
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 0.29, y: -0.152, z: -3.46}
-  m_LocalScale: {x: 1.863885, y: 1.863885, z: 1.863885}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 352597737}
@@ -190,6 +190,7 @@ MonoBehaviour:
     m_Bits: 128
   _name: Chair
   Type: 2
+  _collisionTag: Ground
   _placeLocalPosition: {x: 0, y: 0, z: 0.14}
   _placeLocalRotation: {x: 0, y: -90, z: 0}
   _rotateValue: {x: 0, y: 3, z: 0}

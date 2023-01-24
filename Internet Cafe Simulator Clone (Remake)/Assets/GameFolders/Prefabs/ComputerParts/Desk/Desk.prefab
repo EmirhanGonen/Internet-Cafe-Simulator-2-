@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 918411058}
   m_Layer: 11
   m_Name: PlacableObject
-  m_TagString: Untagged
+  m_TagString: DeskCollision
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -602,8 +602,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0132887, y: 1.0727183, z: 1.1956362}
-  m_Center: {x: -0.0120752305, y: -0.03549269, z: 0.136929}
+  m_Size: {x: 1.0147961, y: 1.0784053, z: 0.23543486}
+  m_Center: {x: -0.01610933, y: 0.015543709, z: 0.61702955}
 --- !u!114 &5261701495427045949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1178,6 +1178,7 @@ GameObject:
   - component: {fileID: 1663112218}
   - component: {fileID: 1507839141772545525}
   - component: {fileID: 171920994344831286}
+  - component: {fileID: 2062018304}
   m_Layer: 8
   m_Name: Desk
   m_TagString: Untagged
@@ -1194,7 +1195,7 @@ Transform:
   m_GameObject: {fileID: 2044798930160022218}
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 0.45811802, y: -1.1362646, z: -0.6023823}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 918411053}
@@ -1264,8 +1265,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8470689, y: 1.030318, z: 1.0838099}
-  m_Center: {x: -0.0046043214, y: 0.004870181, z: 0.7207806}
+  m_Size: {x: 1.8470689, y: 1.030318, z: 1.0065818}
+  m_Center: {x: -0.0046043214, y: 0.004870158, z: 0.6821666}
 --- !u!54 &1507839141772545525
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1294,51 +1295,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73725fc781043c4e8a8097bf4e69c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: _computerParts
-      Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[PartType, Assembly-CSharp],[ComputerPart,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[PartType, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
   _carryLocalPosition: {x: -0.5, y: -1, z: 1.8}
   _carryLocalRotation: {x: 0.4, y: -170, z: -2}
   _layerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 8
   _name: Desk
   Type: 5
-  _placeLocalPosition: {x: 0, y: -0.15, z: 0}
+  _collisionTag: Cafe Ground
+  _placeLocalPosition: {x: 0, y: -0.2, z: 0}
   _placeLocalRotation: {x: -90, y: 0, z: 0}
   _rotateValue: {x: 0, y: 0, z: 3}
+--- !u!208 &2062018304
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044798930160022218}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.91, y: 0.52, z: 0.57100004}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0.75000006}
+  m_TimeToStationary: 0.5
 --- !u!1 &6433386486701247544
 GameObject:
   m_ObjectHideFlags: 0

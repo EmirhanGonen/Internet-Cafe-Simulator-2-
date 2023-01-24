@@ -4,7 +4,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 
 [RequireComponent(typeof(Collider), typeof(Rigidbody))]
-public abstract class Item : SerializedMonoBehaviour, IInteractable, ICarryable, IUsable, IInfo
+public abstract class Item : MonoBehaviour, IInteractable, ICarryable, IUsable, IInfo
 {
     #region Serialized Variables
 
@@ -23,12 +23,16 @@ public abstract class Item : SerializedMonoBehaviour, IInteractable, ICarryable,
     protected bool isUsed;
 
     public string Name { get => _name; }
+
+    private Vector3 _localScale;
     #endregion
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
         _camera = Camera.main;
+        _localScale = transform.localScale;
     }
     public void Interact(params object[] parametres) => StartCoroutine(nameof(Carry), parametres[0] as Transform);
     public IEnumerator Carry(Transform parent)
@@ -40,8 +44,15 @@ public abstract class Item : SerializedMonoBehaviour, IInteractable, ICarryable,
 
         SetParent(parent);
 
-        transform.DOLocalMove(_carryLocalPosition, .50f).SetEase(Ease.InOutBack);
+        // transform.localScale = _localScale;
+
+        //transform.SetLocalPositionAndRotation(transform.localPosition, Quaternion.identity);
+
         transform.DOLocalRotate(_carryLocalRotation, .20f, RotateMode.Fast).SetEase(Ease.Linear);
+        transform.DOLocalMove(_carryLocalPosition, .50f).SetEase(Ease.InOutBack);
+
+        //.localPosition = _carryLocalPosition;
+        //transform.localRotation = Quaternion.Euler(_carryLocalRotation);
 
         while (!isUsed)
         {
@@ -52,11 +63,11 @@ public abstract class Item : SerializedMonoBehaviour, IInteractable, ICarryable,
     }
     public void Drop()
     {
-        transform.DOKill();
+        //transform.DOKill();
 
         transform.SetLocalPositionAndRotation(_carryLocalPosition, Quaternion.Euler(_carryLocalRotation));
 
-        Vector3 forceDirection = transform.parent ? transform.parent.forward : transform.forward;
+        Vector3 forceDirection = transform.parent ? transform.parent.forward : transform.forward; //Ýlk aldýðýmýz konuma ýsýnlýyor ;
 
         SetRigidbodyKinematic(false);
         SetColliderTrigger(false);
