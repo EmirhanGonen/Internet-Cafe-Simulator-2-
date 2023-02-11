@@ -7,14 +7,27 @@ public class ListHolder : MonoBehaviour
     public static ListHolder Instance { get; private set; }
     #endregion
 
-    #region Lists 
+    #region Lists
+
+    #region DeskManager
 
     public List<DeskManager> AvailableDesks = new();
     public int AvailableDesksCount => AvailableDesks.Count;
 
+    #endregion
 
-    //public List<DeskManager> NotavailableDesk = new();
-    //public int NotavailableCount => NotavailableDesk.Count;
+    #region Item Template
+
+    public List<ItemTemplate> itemTemplate;
+
+    #endregion
+
+    #region CartList
+
+    public List<ItemData> ShopCart;
+    public int ShopCartCount => ShopCart.Count;
+
+    #endregion
 
     #endregion
 

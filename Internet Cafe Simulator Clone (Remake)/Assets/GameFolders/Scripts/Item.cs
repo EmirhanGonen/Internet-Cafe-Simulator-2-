@@ -61,7 +61,7 @@ public abstract class Item : MonoBehaviour, IInteractable, ICarryable, IUsable, 
             yield return null;
         }
     }
-    public void Drop()
+    public virtual void Drop()
     {
         //transform.DOKill();
 
@@ -86,7 +86,6 @@ public abstract class Item : MonoBehaviour, IInteractable, ICarryable, IUsable, 
         isUsed = true;
         yield return new WaitForEndOfFrame();
     }
-
 
     protected void SetParent(Transform parent) => transform.SetParent(parent);
     protected void SetRigidbodyKinematic(bool state) => _rigidbody.isKinematic = state;

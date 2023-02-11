@@ -9,6 +9,7 @@ public class Desk : ComputerPart
 
     [TabGroup("Desk")] public Dictionary<PartType, ComputerPart> _computerParts = new();
 
+
     private int _itemQuantityOnDesk;
     private readonly int _necessaryItemQuantity = 5;
 
@@ -17,7 +18,6 @@ public class Desk : ComputerPart
 
     public void Register(PartType partType, ComputerPart computerPart)
     {
-
         if (_computerParts.ContainsKey(partType) | partType == PartType.Desk) return;
 
         _computerParts.Add(partType, computerPart);

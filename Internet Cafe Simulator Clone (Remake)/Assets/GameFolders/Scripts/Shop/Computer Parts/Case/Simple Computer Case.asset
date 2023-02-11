@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83001ae7af6b2a642aa81f725fa6cdcc, type: 3}
+  m_Name: Simple Computer Case
+  m_EditorClassIdentifier: 
+  itemName: Simple Computer Case
+  itemSprite: {fileID: 21300000, guid: 033dd87e16d8d074b8181aa4401636f5, type: 3}
+  backgroundColor: {r: 0.9137255, g: 0.23529412, b: 0.69411767, a: 1}
+  baseCost: 170

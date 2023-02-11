@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350dd27657a72a64e92071d79d706661, type: 3}
+  m_Name: Mouse_Data
+  m_EditorClassIdentifier: 
+  _datas:
+  - {fileID: 11400000, guid: 6b52b87626f485447a2599f750972def, type: 2}
+  - {fileID: 11400000, guid: 05b453ab9a09a4e4ba306d1a1f9b311d, type: 2}

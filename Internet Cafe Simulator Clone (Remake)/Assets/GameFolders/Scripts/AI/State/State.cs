@@ -7,6 +7,7 @@ public abstract class State : MonoBehaviour
     protected Customer _customer;
     protected NavMeshAgent _navMeshAgent;
 
+
     //Normal Protected olarak buraya string AnimationKey;
 
     private void Awake()

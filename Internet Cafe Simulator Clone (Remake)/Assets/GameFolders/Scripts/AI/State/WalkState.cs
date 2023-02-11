@@ -69,4 +69,14 @@ public class WalkState : State
 
         return hit.position;
     }
+
+
+    private IEnumerator CO_Shoot()
+    {
+        yield return new WaitForSeconds(1f);
+
+        //NMermi spawn
+
+        StartCoroutine(nameof(CO_Shoot));
+    }
 }

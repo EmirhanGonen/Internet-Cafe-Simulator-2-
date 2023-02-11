@@ -18,6 +18,8 @@ public class PaymentState : State
 
     public override void OnStateEnter(params object[] parameters)
     {
+        //yüzdelik ihtimal ile ya ödesin ya kaçsýn
+
         _animator = parameters[0] as Animator;
 
         int _animationKey = Animator.StringToHash(_animationName);

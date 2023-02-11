@@ -54,7 +54,6 @@ public class IdleState : State
 
         if (isDecideGoCafe & CanGoCafe())
         {
-
             GoDesk();
             return;
         }
