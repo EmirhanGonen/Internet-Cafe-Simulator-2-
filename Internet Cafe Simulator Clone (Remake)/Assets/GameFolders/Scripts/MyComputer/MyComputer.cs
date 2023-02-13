@@ -100,8 +100,6 @@ public class MyComputer : MonoBehaviour, IInteractable
     {
         sitVariables.cameraTransform.SetParent(sitVariables.oldCameraParent);
 
-        Debug.Log(sitVariables.oldCameraParent.name);
-
         sitVariables.oldCameraParent.gameObject.SetActive(true);
 
 
