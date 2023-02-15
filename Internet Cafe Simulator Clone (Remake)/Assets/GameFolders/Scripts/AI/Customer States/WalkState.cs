@@ -7,10 +7,6 @@ public class WalkState : State
 {
     public UnityEvent OnReach = new();
 
-    //private delegate void OnReachHandle();
-
-    //private OnReachHandle OnReachCallback;
-
     private NavMeshAgent _agent;
     private bool _canGetRandomPosition = true;
 
@@ -68,15 +64,5 @@ public class WalkState : State
         NavMesh.SamplePosition(randomPos, out NavMeshHit hit, maxDistance, NavMesh.AllAreas);
 
         return hit.position;
-    }
-
-
-    private IEnumerator CO_Shoot()
-    {
-        yield return new WaitForSeconds(1f);
-
-        //NMermi spawn
-
-        StartCoroutine(nameof(CO_Shoot));
     }
 }

@@ -9,7 +9,7 @@ public abstract class Item : MonoBehaviour, IInteractable, ICarryable, IUsable, 
     #region Serialized Variables
 
     [FoldoutGroup("ItemVariables")]
-    [FoldoutGroup("ItemVariables/Carry Positions"), SerializeField] private Vector3 _carryLocalPosition, _carryLocalRotation; //While Carryed
+    [FoldoutGroup("ItemVariables/Carry Positions"), SerializeField] protected Vector3 _carryLocalPosition, _carryLocalRotation; //While Carryed
     [FoldoutGroup("ItemVariables/Layer Mask"), SerializeField] protected LayerMask _layerMask;
     [FoldoutGroup("ItemVariables"), SerializeField] private string _name;
     #endregion
@@ -67,9 +67,10 @@ public abstract class Item : MonoBehaviour, IInteractable, ICarryable, IUsable, 
         SetRigidbodyKinematic(false);
         SetColliderTrigger(false);
 
+        _rigidbody.AddForce(100 * Time.deltaTime * transform.parent.forward, ForceMode.Impulse);
+
         SetParent(null);
 
-        _rigidbody.AddForce(100 * Time.deltaTime * transform.parent.forward, ForceMode.Impulse);
 
         SetIsCarryItem(false);
         isUsed = false;

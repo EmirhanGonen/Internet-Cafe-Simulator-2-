@@ -9,7 +9,7 @@ public class ShippingBox : MonoBehaviour, IInteractable, IInfo
     public string Name => _currentData.ItemName;
 
 
-    private ItemData _currentData = null;
+    public ItemData _currentData;
 
     public void Interact(params object[] parameters)
     {

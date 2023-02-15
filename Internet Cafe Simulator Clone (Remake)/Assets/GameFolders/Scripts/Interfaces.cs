@@ -22,3 +22,8 @@ public interface IInfo
 {
     public string Name { get; }
 }
+
+public interface IDamagable
+{
+    public void TakeDamage(Transform transform);
+}

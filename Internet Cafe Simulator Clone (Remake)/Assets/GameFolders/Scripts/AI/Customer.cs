@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Customer : MonoBehaviour, IInteractable
+public class Customer : MonoBehaviour, IInteractable , IDamagable
 {
     private State _currentState;
     public State GetCurrentState() => _currentState;
@@ -10,6 +10,8 @@ public class Customer : MonoBehaviour, IInteractable
     private CustomerStateManager _customerStateManager;
 
     private Animator _animator;
+
+    public Animator GetAnimator => _animator;
 
     private void Awake()
     {
@@ -49,5 +51,12 @@ public class Customer : MonoBehaviour, IInteractable
 
         //Player Inv += GetPayment
         _paymentState.GetPayment();
+    }
+
+    public void TakeDamage(Transform damagePosition)
+    {
+        FaintingState _faintingState = _customerStateManager._states[typeof(FaintingState)] as FaintingState;
+
+        SetState(_faintingState , damagePosition);
     }
 }

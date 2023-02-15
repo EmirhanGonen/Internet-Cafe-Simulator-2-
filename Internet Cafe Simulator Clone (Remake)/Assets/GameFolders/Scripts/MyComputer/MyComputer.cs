@@ -108,4 +108,6 @@ public class MyComputer : MonoBehaviour, IInteractable
 
         _canInteractable = true;
     }
+
+    public void OpenMenu(GameObject menu) => menu.SetActive(!menu.activeSelf);
 }
