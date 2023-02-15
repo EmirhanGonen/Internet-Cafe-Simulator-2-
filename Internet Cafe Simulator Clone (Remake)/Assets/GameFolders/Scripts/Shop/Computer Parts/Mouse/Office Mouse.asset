@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83001ae7af6b2a642aa81f725fa6cdcc, type: 3}
   m_Name: Office Mouse
   m_EditorClassIdentifier: 
-  itemName: Office Mouse
-  itemSprite: {fileID: 21300000, guid: 5806b8d9cc20c6848ae2f2bff32bbcd6, type: 3}
-  backgroundColor: {r: 0.745283, g: 0.46906257, b: 0.1434318, a: 1}
-  baseCost: 160
+  ItemPrefab: {fileID: 8066463938481928966, guid: 155a2a75e3f74c140844c53ce02d1746,
+    type: 3}
+  ItemName: Office Mouse
+  ItemSprite: {fileID: 21300000, guid: 5806b8d9cc20c6848ae2f2bff32bbcd6, type: 3}
+  BackgroundColor: {r: 0.8584906, g: 0.82485604, b: 0.2867034, a: 1}
+  BaseCost: 70

@@ -25,6 +25,8 @@ public abstract class Item : MonoBehaviour, IInteractable, ICarryable, IUsable, 
     public string Name { get => _name; }
 
     private Vector3 _localScale;
+
+    private bool _canDrop;
     #endregion
 
     private void Awake()
@@ -37,6 +39,8 @@ public abstract class Item : MonoBehaviour, IInteractable, ICarryable, IUsable, 
     public void Interact(params object[] parametres) => StartCoroutine(nameof(Carry), parametres[0] as Transform);
     public IEnumerator Carry(Transform parent)
     {
+        _canDrop = false;
+
         SetIsCarryItem(true);
 
         SetRigidbodyKinematic(true);
@@ -44,15 +48,8 @@ public abstract class Item : MonoBehaviour, IInteractable, ICarryable, IUsable, 
 
         SetParent(parent);
 
-        // transform.localScale = _localScale;
-
-        //transform.SetLocalPositionAndRotation(transform.localPosition, Quaternion.identity);
-
         transform.DOLocalRotate(_carryLocalRotation, .20f, RotateMode.Fast).SetEase(Ease.Linear);
-        transform.DOLocalMove(_carryLocalPosition, .50f).SetEase(Ease.InOutBack);
-
-        //.localPosition = _carryLocalPosition;
-        //transform.localRotation = Quaternion.Euler(_carryLocalRotation);
+        transform.DOLocalMove(_carryLocalPosition, .50f).SetEase(Ease.InOutBack).OnComplete(()=> { _canDrop = true; });
 
         while (!isUsed)
         {
@@ -63,18 +60,16 @@ public abstract class Item : MonoBehaviour, IInteractable, ICarryable, IUsable, 
     }
     public virtual void Drop()
     {
-        //transform.DOKill();
+        if (!_canDrop) return;
 
         transform.SetLocalPositionAndRotation(_carryLocalPosition, Quaternion.Euler(_carryLocalRotation));
-
-        Vector3 forceDirection = transform.parent ? transform.parent.forward : transform.forward; //Ýlk aldýðýmýz konuma ýsýnlýyor ;
 
         SetRigidbodyKinematic(false);
         SetColliderTrigger(false);
 
         SetParent(null);
 
-        _rigidbody.AddForce(500 * Time.deltaTime * forceDirection, ForceMode.Impulse);
+        _rigidbody.AddForce(100 * Time.deltaTime * transform.parent.forward, ForceMode.Impulse);
 
         SetIsCarryItem(false);
         isUsed = false;

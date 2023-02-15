@@ -18,6 +18,8 @@ public class ListHolder : MonoBehaviour
 
     #region Item Template
 
+    [SerializeField] private Transform ItemTemplateParent;
+
     public List<ItemTemplate> itemTemplate;
 
     #endregion
@@ -34,5 +36,13 @@ public class ListHolder : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        itemTemplate = new();
+
+        foreach (ItemTemplate _itemTemplate in ItemTemplateParent.GetComponentsInChildren<ItemTemplate>())
+        {
+            itemTemplate.Add(_itemTemplate);
+            _itemTemplate.gameObject.SetActive(false);
+        }
     }
 }

@@ -3,11 +3,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/Item")]
 public class ItemData : ScriptableObject
 {
-    public string itemName;
+    public Item ItemPrefab;
 
-    public Sprite itemSprite;
+    public string ItemName;
 
-    public Color backgroundColor;
+    public Sprite ItemSprite;
 
-    public int baseCost;
+    public Color BackgroundColor;
+
+    public int BaseCost;
 }

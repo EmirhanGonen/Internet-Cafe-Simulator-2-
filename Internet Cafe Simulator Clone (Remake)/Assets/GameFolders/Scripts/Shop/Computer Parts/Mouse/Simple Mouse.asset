@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83001ae7af6b2a642aa81f725fa6cdcc, type: 3}
   m_Name: Simple Mouse
   m_EditorClassIdentifier: 
-  itemName: Simple Mouse
-  itemSprite: {fileID: 21300000, guid: 38a229ec6a13fdb45b93f1ce688e9155, type: 3}
-  backgroundColor: {r: 0.6751077, g: 0.7169812, b: 0.21915273, a: 1}
-  baseCost: 120
+  ItemPrefab: {fileID: 8833431612537834780, guid: c19e99906f1f6ac46b157a315afc4a41,
+    type: 3}
+  ItemName: Simple Mouse
+  ItemSprite: {fileID: 21300000, guid: 38a229ec6a13fdb45b93f1ce688e9155, type: 3}
+  BackgroundColor: {r: 0.6559227, g: 0.28627455, b: 0.85882354, a: 1}
+  BaseCost: 100

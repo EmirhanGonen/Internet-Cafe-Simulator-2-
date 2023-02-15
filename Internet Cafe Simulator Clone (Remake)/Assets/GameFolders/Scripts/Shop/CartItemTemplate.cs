@@ -20,12 +20,12 @@ public class CartItemTemplate : MonoBehaviour
     {
         _itemData = _data;
 
-        _itemName.SetText(_data.itemName);
-        _itemPrice.SetText($"${_data.baseCost}");
+        _itemName.SetText(_data.ItemName);
+        _itemPrice.SetText($"${_data.BaseCost}");
         _indexText.SetText(Index.ToString());
 
-        _itemImage.sprite = _data.itemSprite;
-        _itemImageBackground.color = _data.backgroundColor;
+        _itemImage.sprite = _data.ItemSprite;
+        _itemImageBackground.color = _data.BackgroundColor;
     }
 
     public void RemoveFromShoppingCart() 

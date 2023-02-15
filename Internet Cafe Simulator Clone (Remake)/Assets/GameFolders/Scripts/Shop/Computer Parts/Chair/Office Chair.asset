@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83001ae7af6b2a642aa81f725fa6cdcc, type: 3}
+  m_Name: Office Chair
+  m_EditorClassIdentifier: 
+  ItemPrefab: {fileID: 124897431240679377, guid: 5deae34eef7b2614e9c5a1fff435a0c1,
+    type: 3}
+  ItemName: Office Chair
+  ItemSprite: {fileID: 21300000, guid: ea0577ce5d715ba4996599d7c60b23d4, type: 3}
+  BackgroundColor: {r: 0.3150943, g: 0.9855333, b: 1, a: 1}
+  BaseCost: 120

@@ -8,6 +8,7 @@ TagManager:
   - DeskCollision
   - Ground
   - Cafe Ground
+  - Delivery Zone
   layers:
   - Default
   - TransparentFX

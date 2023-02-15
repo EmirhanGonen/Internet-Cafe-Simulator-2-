@@ -23,7 +23,7 @@ public class ShoppingCart : MonoBehaviour
 
         _shoppingCart.AddRange(ListHolder.Instance.ShopCart);
 
-        for (int i = 0; i < _cartItemTemplatesParent.childCount; i++)
+        for (int i = _shoppingCart.Count; i < _cartItemTemplatesParent.childCount; i++)
             _cartItemTemplatesParent.GetChild(i).gameObject.SetActive(false);
 
         for (int i = 0; i < _shoppingCart.Count; i++)
@@ -39,9 +39,18 @@ public class ShoppingCart : MonoBehaviour
     public void SetCostText() => _costText.SetText($"Buy: ${GetCartCost()}");
     public void BuyButton()
     {
+        if (GetCartCost().Equals(0)) return;
 
+        //Check Money
 
-        //ListHolder.Instance.ShopCart = new();
+        List<ItemData> _shoppingCart = ListHolder.Instance.ShopCart;
+
+        ListHolder.Instance.ShopCart = new();
+
+        SetCarts();
+        SetCostText();
+
+        CargoCompany.Instance.GetWork(_shoppingCart);
     }
 
     private float GetCartCost()
@@ -52,7 +61,7 @@ public class ShoppingCart : MonoBehaviour
 
         float price = 0.00f;
 
-        foreach (ItemData item in _shoppingCart) price += item.baseCost;
+        foreach (ItemData item in _shoppingCart) price += item.BaseCost;
 
         return price;
     }

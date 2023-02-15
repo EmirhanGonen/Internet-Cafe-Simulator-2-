@@ -9,9 +9,17 @@ public class CategorizeButton : ScriptableObject
     {
         ListHolder _listHolder = ListHolder.Instance;
 
-        foreach (ItemTemplate itemTemplate in _listHolder.itemTemplate)
+        for (int i = _data.Datas.Count; i < ListHolder.Instance.itemTemplate.Count; i++)
         {
-            itemTemplate.GetCategorize(_data.Datas[_listHolder.itemTemplate.IndexOf(itemTemplate)]);
-        }  
+            if (!_listHolder.itemTemplate[i].gameObject.activeSelf) break;
+
+            _listHolder.itemTemplate[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < _data.Datas.Count; i++)
+        {
+            _listHolder.itemTemplate[i].gameObject.SetActive(true);
+            _listHolder.itemTemplate[i].GetCategorize(_data.Datas[i]);
+        }
     }
 }

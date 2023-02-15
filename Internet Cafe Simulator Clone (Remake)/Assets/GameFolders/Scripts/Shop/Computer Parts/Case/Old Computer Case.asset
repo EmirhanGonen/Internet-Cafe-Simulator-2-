@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83001ae7af6b2a642aa81f725fa6cdcc, type: 3}
   m_Name: Old Computer Case
   m_EditorClassIdentifier: 
-  itemName: Old Computer Case
-  itemSprite: {fileID: 21300000, guid: 9d0ca5dc895fc304aa8c6dcde5a6698c, type: 3}
-  backgroundColor: {r: 0.9137255, g: 0.23529412, b: 0.23529412, a: 1}
-  baseCost: 120
+  ItemPrefab: {fileID: 6889090065295707861, guid: b4f209812a566b7488d79f671ced2cbb,
+    type: 3}
+  ItemName: Old Computer Case
+  ItemSprite: {fileID: 21300000, guid: 9d0ca5dc895fc304aa8c6dcde5a6698c, type: 3}
+  BackgroundColor: {r: 1, g: 0.39999998, b: 0.39999998, a: 1}
+  BaseCost: 150

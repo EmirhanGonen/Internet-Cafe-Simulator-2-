@@ -13,7 +13,7 @@ NavMeshProjectSettings:
     cost: 2
   - name: Cafe
     cost: 1
-  - name: 
+  - name: DeliveryZone
     cost: 1
   - name: 
     cost: 1
