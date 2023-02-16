@@ -44,14 +44,11 @@ public class Desk : ComputerPart
         float a = _reAvailableTime;
         _reAvailableTime = Time.time + _reAvailableDuration;
         StartCoroutine(nameof(CO_CheckDeskIsAvailable));
-        Debug.Log($"Eski Time {a } Yeni Time {_reAvailableTime }");
     }
 
     private IEnumerator CO_CheckDeskIsAvailable()
     {
         float waitDiffrent = _reAvailableTime - Time.time;
-
-        Debug.Log(waitDiffrent);
 
         yield return new WaitForSeconds(waitDiffrent);
 

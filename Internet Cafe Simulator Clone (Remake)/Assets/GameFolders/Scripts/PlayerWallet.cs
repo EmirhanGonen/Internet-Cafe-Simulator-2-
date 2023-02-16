@@ -62,7 +62,7 @@ public class PlayerWallet : MonoBehaviour
     private void SetMoneyText() => _moneyText.SetText($"${_money}");
     private void SetCharacterMoveable()
     {
-        if (Cursor.visible)
+        if (!_controller.GetCanWalk)
         {
             _controller.CanControlCallback();
             return;

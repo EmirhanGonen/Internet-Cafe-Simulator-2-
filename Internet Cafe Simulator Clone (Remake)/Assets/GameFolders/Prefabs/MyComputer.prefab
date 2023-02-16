@@ -6519,9 +6519,9 @@ GameObject:
   - component: {fileID: 8140259150674501528}
   - component: {fileID: 8092920179736959370}
   - component: {fileID: 8118858625192844693}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: MyComputer
-  m_TagString: Untagged
+  m_TagString: MyComputer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

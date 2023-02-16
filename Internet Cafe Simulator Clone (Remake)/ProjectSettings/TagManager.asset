@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Cafe Ground
   - Delivery Zone
+  - MyComputer
   layers:
   - Default
   - TransparentFX

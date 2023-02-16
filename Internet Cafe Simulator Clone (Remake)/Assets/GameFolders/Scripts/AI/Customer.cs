@@ -1,8 +1,9 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Customer : MonoBehaviour, IInteractable , IDamagable
+public class Customer : MonoBehaviour, IInteractable, IDamagable
 {
     private State _currentState;
     private State _crimeState = null;
@@ -23,24 +24,39 @@ public class Customer : MonoBehaviour, IInteractable , IDamagable
         //_agent.areaMask |= 1 << 3; // 3. layeri aktif edicek
         //_agent.areaMask &= ~(2 << 3); //2. layeri pasif hale getircek
 
-        _customerStateManager = GetComponentInChildren<CustomerStateManager>();
+        /*_customerStateManager = GetComponentInChildren<CustomerStateManager>();
 
         _animator = GetComponent<Animator>();
 
         IdleState idleState = _customerStateManager._states[typeof(IdleState)] as IdleState;
 
-        _currentState = idleState;
+        SetState(idleState, _animator);*/
+
+        //gameObject.SetActive(false);
+
+        _customerStateManager = GetComponentInChildren<CustomerStateManager>();
+
+        _animator = GetComponent<Animator>();
+    }
+    private void Start()
+    {
+        SetIdleState();
+    }
+    private void SetIdleState()
+    {
+
+        IdleState idleState = _customerStateManager._states[typeof(IdleState)] as IdleState;
 
         SetState(idleState, _animator);
     }
 
     public void SetState(State nextState, params object[] parameters)
     {
-        _currentState.OnStateExit(parameters);
+        _currentState?.OnStateExit(parameters);
 
         _currentState = nextState;
 
-        _currentState.OnStateEnter(parameters);
+        _currentState?.OnStateEnter(parameters);
     }
 
     public void SetCrimeState(CrimeState crimeState, params object[] parameters)
@@ -65,14 +81,22 @@ public class Customer : MonoBehaviour, IInteractable , IDamagable
         PaymentState _paymentState = _customerStateManager._states[typeof(PaymentState)] as PaymentState;
 
         //Player Inv += GetPayment
-        _paymentState.GetPayment();
+        PlayerWallet.Instance.Money += _paymentState.GetPayment();
     }
     public void TakeDamage(Transform damagePosition)
     {
+        UseComputerState _useComputerState = _customerStateManager._states[typeof(UseComputerState)] as UseComputerState;
+
+        //eğer sopayla hasar aldığında masada ise burayı çalıştırcak
+        //buda masa boşalsın ve başka müşteriler gelebilsin vs diye
+
+        if (_currentState == _useComputerState)
+            _useComputerState.SitUpComputer(isFainted: true);
+
         FaintingState _faintingState = _customerStateManager._states[typeof(FaintingState)] as FaintingState;
 
-        SetState(_faintingState , damagePosition);
+        SetState(_faintingState, damagePosition);
     }
 
-    public bool CustomerIsCrime() =>_crimeState != null;
+    public bool CustomerIsCrime() => _crimeState != null;
 }

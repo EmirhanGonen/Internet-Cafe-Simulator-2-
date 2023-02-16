@@ -20,6 +20,8 @@ public class FaintingState : State
         if (_customer.CustomerIsCrime())
             PlayerWallet.Instance.Money += _customer.PaymentAmount;
 
+        _customer.SetCrimeState(null);
+
         StartCoroutine(nameof(Respawn));
     }
 
@@ -38,8 +40,6 @@ public class FaintingState : State
 
 
         transform.parent.parent.GetChild(0).gameObject.SetActive(true);
-        transform.parent.parent.GetChild(1).gameObject.SetActive(true);
-
 
         IdleState _idleState = _customerStateManager._states[typeof(IdleState)] as IdleState;
 

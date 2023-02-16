@@ -35,6 +35,7 @@ public class Character_Controller : MonoBehaviour
     private Camera _camera;
 
     private bool _canWalk = true;
+    public bool GetCanWalk => _canWalk;
 
     #endregion
 

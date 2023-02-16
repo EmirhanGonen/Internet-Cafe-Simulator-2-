@@ -58,7 +58,7 @@ public class PaymentState : State
 
     public override void OnStateExit(params object[] parameters)
     {
-
+        _amount = 0.00f;
     }
     public override void OnStateUpdate(params object[] parameters)
     {

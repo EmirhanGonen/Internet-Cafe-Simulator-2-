@@ -65,11 +65,13 @@ public class UseComputerState : State
         SitUpComputer();
     }
 
-    private void SitUpComputer()
+    public void SitUpComputer(bool isFainted = false)
     {
         //Payment State
 
         _desk.UsedByCustomer();
+
+        if (isFainted) return; //bayýldýysa ödeme yapmýcak direk hiçbir stateye geçmeden kendini kapatcak
 
         PaymentState _paymentState = _customerStateManager._states[typeof(PaymentState)] as PaymentState;
 
