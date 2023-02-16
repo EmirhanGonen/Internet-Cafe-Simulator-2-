@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PaymentState : State
 {
-    public Transform Payment;
+    private Transform _paymentPosition;
 
     private float _amount;
     private readonly int _paymentMultiply = 5; //For Seconds
@@ -19,18 +19,39 @@ public class PaymentState : State
     public override void OnStateEnter(params object[] parameters)
     {
         //yüzdelik ihtimal ile ya ödesin ya kaçsýn
-
         _animator = parameters[0] as Animator;
+
+        UseComputerState _useComputerState = parameters[1] as UseComputerState;
+
+        _amount = _useComputerState.GetUseDuration() * _paymentMultiply;
+
+        _customer.PaymentAmount = _amount;
+
+        bool isPaying = Random.Range(0, 2) == 0;
+
+        if (!isPaying)
+        {
+            CrimeState _crimeState = _customerStateManager._states[typeof(CrimeState)] as CrimeState;
+            CrimeState.CrimeStateVariables _crimeStateVariables = new() { PaymentAmount = _amount };
+
+            _customer.SetCrimeState(_crimeState, _crimeStateVariables);
+
+            WalkState _walkState = _customerStateManager._states[typeof(WalkState)] as WalkState;
+
+            _customer.SetState(_walkState, _animator);
+
+            return;
+        }
+
 
         int _animationKey = Animator.StringToHash(_animationName);
 
         _animator.Play(_animationKey);
 
-        _navMeshAgent.SetDestination(Payment.position - Vector3.back);
+        _paymentPosition = GameObject.FindGameObjectWithTag("MyComputer").transform;
 
-        UseComputerState _useComputerState = parameters[1] as UseComputerState;
+        _navMeshAgent.SetDestination(_paymentPosition.position - Vector3.back);
 
-        _amount = _useComputerState.GetUseDuration() * _paymentMultiply;
 
         StartCoroutine(nameof(CO_CheckPayment));
     }
@@ -53,7 +74,7 @@ public class PaymentState : State
 
         WalkState _walkState = _customerStateManager._states[typeof(WalkState)] as WalkState;
 
-        _customer.SetState(_walkState , _animator);
+        _customer.SetState(_walkState, _animator);
     }
 
     public float GetPayment()

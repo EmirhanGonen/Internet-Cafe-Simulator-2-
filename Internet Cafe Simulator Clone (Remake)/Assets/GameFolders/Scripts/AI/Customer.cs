@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class Customer : MonoBehaviour, IInteractable , IDamagable
 {
     private State _currentState;
+    private State _crimeState = null;
     public State GetCurrentState() => _currentState;
 
     private CustomerStateManager _customerStateManager;
@@ -12,6 +13,9 @@ public class Customer : MonoBehaviour, IInteractable , IDamagable
     private Animator _animator;
 
     public Animator GetAnimator => _animator;
+
+    private float _paymentAmount;
+    public float PaymentAmount { get => _paymentAmount; set => _paymentAmount = value; }
 
     private void Awake()
     {
@@ -38,10 +42,21 @@ public class Customer : MonoBehaviour, IInteractable , IDamagable
 
         _currentState.OnStateEnter(parameters);
     }
-    
+
+    public void SetCrimeState(CrimeState crimeState, params object[] parameters)
+    {
+        _crimeState?.OnStateExit();
+
+        _crimeState = crimeState;
+
+        _crimeState?.OnStateEnter(parameters);
+    }
+
+
     private void Update()
     {
         if (_currentState) _currentState.OnStateUpdate();
+        _crimeState?.OnStateUpdate();
     }
     public void Interact(params object[] parameters)
     {
@@ -52,11 +67,12 @@ public class Customer : MonoBehaviour, IInteractable , IDamagable
         //Player Inv += GetPayment
         _paymentState.GetPayment();
     }
-
     public void TakeDamage(Transform damagePosition)
     {
         FaintingState _faintingState = _customerStateManager._states[typeof(FaintingState)] as FaintingState;
 
         SetState(_faintingState , damagePosition);
     }
+
+    public bool CustomerIsCrime() =>_crimeState != null;
 }

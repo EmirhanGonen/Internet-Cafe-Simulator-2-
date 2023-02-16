@@ -41,7 +41,9 @@ public class ShoppingCart : MonoBehaviour
     {
         if (GetCartCost().Equals(0)) return;
 
-        //Check Money
+        if (PlayerWallet.Instance.Money < GetCartCost()) return;
+
+        PlayerWallet.Instance.Money -= GetCartCost();
 
         List<ItemData> _shoppingCart = ListHolder.Instance.ShopCart;
 

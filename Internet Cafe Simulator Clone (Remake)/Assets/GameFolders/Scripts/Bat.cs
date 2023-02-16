@@ -38,7 +38,7 @@ public class Bat : Item
         if (_raycastHit.collider)
         {
             IDamagable damagable = _raycastHit.collider.transform.parent ? _raycastHit.collider.transform.parent.GetComponentInParent<IDamagable>() : _raycastHit.collider.GetComponent<IDamagable>();
-            GiveDamage(damagable);
+            if (damagable != null) GiveDamage(damagable);
         }
 
         yield return new WaitForSecondsRealtime(0.65f);

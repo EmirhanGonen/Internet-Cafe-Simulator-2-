@@ -44,7 +44,6 @@ public class DeskCanvas : MonoBehaviour
             case PartType.Keyboard: _keyboardIcon.sprite = isRegistered ? _greenTickMark : _redTickMark; break;
             case PartType.Mouse: _mouseIcon.sprite = isRegistered ? _greenTickMark : _redTickMark; break;
         }
-        Debug.Log($"Desk Complete State : {_desk.IsCompleted()}");
         CheckCanvasActive();
     }
 
