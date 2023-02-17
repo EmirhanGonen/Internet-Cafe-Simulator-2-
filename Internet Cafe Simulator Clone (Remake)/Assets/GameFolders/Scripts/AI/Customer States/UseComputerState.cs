@@ -23,6 +23,8 @@ public class UseComputerState : State
 
     public override void OnStateEnter(params object[] parameters)
     {
+        _collider.enabled = false;
+
         _animator = parameters[0] as Animator;
 
         _desk = parameters[1] as DeskManager;
@@ -34,7 +36,6 @@ public class UseComputerState : State
 
         _desk.SetMonitorScreen();
 
-        _collider.enabled = false;
         _customer.transform.SetParent(_chair);
         Invoke(nameof(SetLocalPositionByDelay), 1.35f);
 

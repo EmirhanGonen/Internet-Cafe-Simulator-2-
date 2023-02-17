@@ -37,7 +37,7 @@ public abstract class Item : MonoBehaviour, IInteractable, ICarryable, IUsable, 
         _localScale = transform.localScale;
     }
     public void Interact(params object[] parametres) => StartCoroutine(nameof(Carry), parametres[0] as Transform);
-    public IEnumerator Carry(Transform parent)
+    public virtual IEnumerator Carry(Transform parent)
     {
         _canDrop = false;
 

@@ -32,6 +32,7 @@ public class PaymentState : State
         if (!isPaying)
         {
             CrimeState _crimeState = _customerStateManager._states[typeof(CrimeState)] as CrimeState;
+
             CrimeState.CrimeStateVariables _crimeStateVariables = new() { PaymentAmount = _amount };
 
             _customer.SetCrimeState(_crimeState, _crimeStateVariables);

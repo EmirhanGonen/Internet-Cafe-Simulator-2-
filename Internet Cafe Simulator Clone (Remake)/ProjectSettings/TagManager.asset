@@ -10,6 +10,7 @@ TagManager:
   - Cafe Ground
   - Delivery Zone
   - MyComputer
+  - Cafe Door
   layers:
   - Default
   - TransparentFX

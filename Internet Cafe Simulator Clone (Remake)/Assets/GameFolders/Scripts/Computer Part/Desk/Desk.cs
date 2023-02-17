@@ -5,16 +5,19 @@ using UnityEngine;
 
 public class Desk : ComputerPart
 {
-    //available state acabilirm
-
     [TabGroup("Desk")] public Dictionary<PartType, ComputerPart> _computerParts = new();
-
 
     private int _itemQuantityOnDesk;
     private readonly int _necessaryItemQuantity = 5;
 
     private readonly float _reAvailableDuration = 15.00f;
     private float _reAvailableTime;
+
+    public override IEnumerator Carry(Transform parent)
+    {
+        _computerParts = new();
+        return base.Carry(parent);
+    }
 
     public void Register(PartType partType, ComputerPart computerPart)
     {

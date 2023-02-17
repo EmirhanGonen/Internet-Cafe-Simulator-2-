@@ -37,13 +37,17 @@ public class Bat : Item
 
         if (_raycastHit.collider)
         {
+            
             IDamagable damagable = _raycastHit.collider.transform.parent ? _raycastHit.collider.transform.parent.GetComponentInParent<IDamagable>() : _raycastHit.collider.GetComponent<IDamagable>();
+
+            Chair _chair = _raycastHit.collider.GetComponent<Chair>();
+
+            damagable = damagable == null & _chair != null ? _chair.GetComponentInChildren<IDamagable>() : damagable;
+
             if (damagable != null) GiveDamage(damagable);
         }
 
         yield return new WaitForSecondsRealtime(0.65f);
-
-        // transform.SetLocalPositionAndRotation(_carryLocalPosition , Quaternion.Euler(_carryLocalRotation));
 
         _animator.enabled = false;
     }

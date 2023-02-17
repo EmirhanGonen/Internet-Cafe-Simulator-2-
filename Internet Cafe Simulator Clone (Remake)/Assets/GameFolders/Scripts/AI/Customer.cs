@@ -18,25 +18,19 @@ public class Customer : MonoBehaviour, IInteractable, IDamagable
     private float _paymentAmount;
     public float PaymentAmount { get => _paymentAmount; set => _paymentAmount = value; }
 
+    private NavMeshAgent _agent;
+
     private void Awake()
     {
-        //_agent.areaMask |= 7; // 2 �zeri 3 = 8 8-1 7 oluyor 3.layera kadar ac�yor �s kadar layer ac�yor
+        //_agent.areaMask |= 7; // 2 uzeri 3 = 8 8-1 7 oluyor 3.layera kadar aciyor us kadar layer aciyor
         //_agent.areaMask |= 1 << 3; // 3. layeri aktif edicek
         //_agent.areaMask &= ~(2 << 3); //2. layeri pasif hale getircek
-
-        /*_customerStateManager = GetComponentInChildren<CustomerStateManager>();
-
-        _animator = GetComponent<Animator>();
-
-        IdleState idleState = _customerStateManager._states[typeof(IdleState)] as IdleState;
-
-        SetState(idleState, _animator);*/
-
-        //gameObject.SetActive(false);
 
         _customerStateManager = GetComponentInChildren<CustomerStateManager>();
 
         _animator = GetComponent<Animator>();
+
+        _agent = GetComponent<NavMeshAgent>();
     }
     private void Start()
     {
@@ -73,6 +67,20 @@ public class Customer : MonoBehaviour, IInteractable, IDamagable
     {
         if (_currentState) _currentState.OnStateUpdate();
         _crimeState?.OnStateUpdate();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.tag);
+
+        if (!other.CompareTag("Cafe Door")) return;
+
+        WalkState _walkState = _customerStateManager._states[typeof(WalkState)] as WalkState;
+
+        //Eğer cafe kapısına temas ettiyse yani ya kafeye giriyordur yada çıkıyordur
+        // cafeden çıkması için statesinin walkstate olması lazım onu kontrol edip aremaskini kapatıyorum
+
+        if (_currentState == _walkState) 
+            _agent.areaMask &= ~(3 << 3);
     }
     public void Interact(params object[] parameters)
     {

@@ -5,13 +5,15 @@ using UnityEngine.Events;
 
 public class WalkState : State
 {
+    public GameObject a;
     public UnityEvent OnReach = new();
 
     private NavMeshAgent _agent;
-    private bool _canGetRandomPosition = true;
 
     private Animator _animator;
     private const string _animationKey = "Walk State";
+
+    private bool isGetRandomPosition = false;
 
     private void Start()
     {
@@ -26,42 +28,41 @@ public class WalkState : State
 
         _animator = parameters[0] as Animator;
 
-        int idleAnimHashCode = Animator.StringToHash(_animationKey);
+        int animationHash = Animator.StringToHash(_animationKey);
 
-        _animator.Play(idleAnimHashCode);
+        _animator.Play(animationHash);
 
-        //OnReach.AddListener(parameters[1] as UnityAction);
+        _agent.SetDestination(GetRandomPoint(_customer.transform.position, 25));
     }
 
     public override void OnStateExit(params object[] parameters)
     {
-        // _animator = null;
-        _canGetRandomPosition = true;
+        isGetRandomPosition = false;
     }
 
     public override void OnStateUpdate(params object[] parameters)
     {
-        _agent.SetDestination(GetRandomPoint(_customer.transform.position, 25));
-        //_agent.SetDestination(Vector3.forward * 1);
-
-        if (!IsReach()) return;
+        if (!IsReach() | !isGetRandomPosition) return;
 
         _customer.SetState(_customerStateManager._states[typeof(IdleState)] as IdleState, _animator);
-
-        //OnReach?.Invoke();
     }
 
     private bool IsReach() => Vector3.Distance(_customer.transform.position, _agent.destination) < 0.50f;
 
     public Vector3 GetRandomPoint(Vector3 center, float maxDistance)
     {
-        if (!_canGetRandomPosition) return _agent.destination;
-
-        _canGetRandomPosition = false;
+        Transform _cafe = GameObject.FindGameObjectWithTag("Cafe Ground").transform;
 
         Vector3 randomPos = Random.insideUnitSphere * maxDistance + center;
 
         NavMesh.SamplePosition(randomPos, out NavMeshHit hit, maxDistance, NavMesh.AllAreas);
+
+        if (Vector3.Distance(hit.position, _cafe.position) < 15f)
+            return GetRandomPoint(center, maxDistance);
+
+        a.transform.position = hit.position;
+
+        isGetRandomPosition = true;
 
         return hit.position;
     }
