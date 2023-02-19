@@ -8,9 +8,8 @@ public class PlayerWallet : MonoBehaviour
 {
     public static PlayerWallet Instance { get; private set; } = null;
 
-
-
     [SerializeField] private GameObject _playerWalletMenu;
+    [SerializeField] private GameObject _playerWalletInfoUI;
     [SerializeField] private KeyCode _menuInteractionKeyCode = KeyCode.Tab;
     private bool _isInteractableToMenu = true;
 
@@ -19,11 +18,41 @@ public class PlayerWallet : MonoBehaviour
     private delegate void WalletMenuHandler();
     private WalletMenuHandler _walletMenuCallback;
 
-    public float Money { get => _money; set => _money = value; }
+    [ContextMenu("GetMoney")]
+    public void GetMoney() => Money += 50;
+    [ContextMenu("LoseMoney")]
+
+    public void LoseMoney() => Money -= 50;
+
+
+    public float Money
+    {
+        get => _money; set
+        {
+            float _tempValue = value - _money;
+
+            _money = value;
+
+            TextMeshProUGUI _text = _playerWalletInfoUI.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+
+            _text.color = _tempValue < 0 ? Color.red : Color.green;
+
+            string sign = _tempValue < 0 ? "-" : "+";
+
+            _text.SetText($"${ " " + sign + " " + Mathf.Abs(_tempValue) } ");
+
+            _playerWalletInfoUI.transform.DOKill();
+
+            _playerWalletInfoUI.transform.DOLocalMoveX(793, 0.70f).
+                OnComplete(() => _playerWalletInfoUI.transform.DOLocalMoveX(1300, 0.70f).SetDelay(0.50f));
+        }
+    }
     private float _money = 200.00f;
 
 
     private Character_Controller _controller;
+
+    #region Unity Methods
 
     private void OnEnable()
     {
@@ -55,6 +84,7 @@ public class PlayerWallet : MonoBehaviour
         _walletMenuCallback?.Invoke();
     }
 
+    #endregion
 
     #region WalletMenuCallbacks
     private void DoKillMenu() => _playerWalletMenu.transform.DOKill();

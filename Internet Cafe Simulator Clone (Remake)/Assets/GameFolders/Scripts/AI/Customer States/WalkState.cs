@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class WalkState : State
 {
-    public GameObject a;
     public UnityEvent OnReach = new();
 
     private NavMeshAgent _agent;
@@ -59,8 +58,6 @@ public class WalkState : State
 
         if (Vector3.Distance(hit.position, _cafe.position) < 15f)
             return GetRandomPoint(center, maxDistance);
-
-        a.transform.position = hit.position;
 
         isGetRandomPosition = true;
 
